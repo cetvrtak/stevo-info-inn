@@ -1,10 +1,19 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 
 const HomePage = () => {
+  const [query, setQuery] = useState('')
+
+  function handleSubmit(e) {
+    e.preventDefault()
+  }
+
   return (
     <div>
-      <h1>Welcome to My SSR React App</h1>
-      <p>This page is server-side rendered with Next.js!</p>
+      <form onSubmit={handleSubmit}>
+        <input type='text' value={query} onChange={(e) => setQuery(e.target.value)} />
+        <button>🔍</button>
+      </form>
     </div>
   );
 };
