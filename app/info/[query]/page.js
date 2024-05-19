@@ -1,3 +1,7 @@
+'use client'
+import { useState, useEffect } from "react";
+import Modal from "../../Modal";
+
 async function fetchData(query) {
   var url = "http://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party";
   var token = "237a7776db5718ec773b4319a288282fc9723df2";
@@ -38,18 +42,36 @@ async function fakeAPI(query) {
   }
 }
 
-async function InfoPage({ params }) {
+function InfoPage({ params }) {
   const { query } = params;
-  const data = await fetchData(query);
+  const [data, setData] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    async function getData() {
+      const fetchedData = await fetchData(query);
+      setData(fetchedData);
+    }
+
+    getData();
+  }, [query]);
+
+  function handleModalToggle() {
+    setIsModalOpen((s) => !s)
+  }
 
   return (
     <div>
-      {data ? <div>
-        <h1>{data.value}</h1>
-        <p>Основатель: {data.data.management.name}</p>
-        <p>Должность: {data.data.management.post}</p>
-        <p>Адрес: {data.data.address.value}</p>
-      </div> : <h2>Произошла ошибка</h2>}
+      {data ? (
+        <div>
+          {isModalOpen && <Modal onToggleModal={handleModalToggle} />}
+
+          <h1>{data.value}</h1>
+          <p>Основатель: {data.data.management.name}</p>
+          <p>Должность: {data.data.management.post}</p>
+          <p className="address" onClick={handleModalToggle}>Адрес: {data.data.address.value}</p>
+        </div>
+      ) : <h2>Произошла ошибка</h2>}
     </div>
   );
 }
