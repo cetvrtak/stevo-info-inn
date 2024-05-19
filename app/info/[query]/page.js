@@ -64,7 +64,7 @@ function InfoPage({ params }) {
     <div>
       {data ? (
         <div>
-          {isModalOpen && <Modal onToggleModal={handleModalToggle} />}
+          {isModalOpen && <Modal onToggleModal={handleModalToggle} address={data.data.address.value} />}
 
           <h1>{data.value}</h1>
           <p>Основатель: {data.data.management.name}</p>

@@ -1,5 +1,7 @@
 'use client';
-export default function Modal({ onToggleModal }) {
+export default function Modal({ onToggleModal, address = 'г Москва, ул Вавилова, д 19' }) {
+  const location = `https://www.google.com/maps/search/?api=1&query=${address}`
+
   return (
     <div>
       <div className="overlay" onClick={onToggleModal}></div>
@@ -7,7 +9,7 @@ export default function Modal({ onToggleModal }) {
         <h3>Вы действительно хотите перейти на внешний ресурс?</h3>
         <div className="modal-buttons">
           <button onClick={onToggleModal}>Отказался</button>
-          <button>Перейти</button>
+          <button><a href={location} target="blank_">Перейти</a></button>
         </div>
       </div>
     </div>
