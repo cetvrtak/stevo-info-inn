@@ -12,9 +12,9 @@ export default function SearchBar() {
     }
 
     return (
-        <div>
+        <div className='search-container'>
             <form onSubmit={handleSubmit}>
-                <input type='text' value={query} onChange={(e) => setQuery(e.target.value)} />
+                <input type='text' placeholder='Укажите ИНН' value={query} onChange={(e) => setQuery(e.target.value)} />
                 <button>🔍</button>
             </form>
         </div>
