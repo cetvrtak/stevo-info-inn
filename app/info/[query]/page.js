@@ -44,10 +44,12 @@ async function InfoPage({ params }) {
 
   return (
     <div>
-      <h1>{data.value}</h1>
-      <p>Основатель: {data.data.management.name}</p>
-      <p>Должность: {data.data.management.post}</p>
-      <p>Адрес: {data.data.address.value}</p>
+      {data ? <div>
+        <h1>{data.value}</h1>
+        <p>Основатель: {data.data.management.name}</p>
+        <p>Должность: {data.data.management.post}</p>
+        <p>Адрес: {data.data.address.value}</p>
+      </div> : <h2>Произошла ошибка</h2>}
     </div>
   );
 }
