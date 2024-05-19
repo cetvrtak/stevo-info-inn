@@ -5,7 +5,7 @@ import SearchBar from "@/app/SearchBar";
 
 async function fetchData(query) {
   var url = "http://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party";
-  var token = "237a7776db5718ec773b4319a288282fc9723df2";
+  var token = "9952f7bb5df38a1abdf2cd69d3f08ee528d0dab4";
 
   var options = {
     method: "POST",
