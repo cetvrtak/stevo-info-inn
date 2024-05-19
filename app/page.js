@@ -6,33 +6,9 @@ const HomePage = () => {
   const [query, setQuery] = useState('7707083893')
   const router = useRouter()
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault()
-
-    var url = "http://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party";
-    var token = "237a7776db5718ec773b4319a288282fc9723df2";
-
-    var options = {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": "Token " + token
-      },
-      body: JSON.stringify({ query: query })
-    }
-
-    try {
-      const response = await fetch(url, options);
-      const result = await response.text();
-      const suggestions = JSON.parse(result).suggestions;
-      const main = suggestions.filter(el => el.data.branch_type === 'MAIN')[0]
-
-      router.push(`/info/${query}?value=${main.value}&name=${main.data.management.name}&post=${main.data.management.post}&address=${main.data.address.value}`, `/info/${query}`)
-    } catch (error) {
-      console.log("error", error);
-    }
+    router.push(`/info/${query}`)
   }
 
   return (
