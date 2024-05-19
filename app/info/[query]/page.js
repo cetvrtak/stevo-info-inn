@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from "react";
-import Modal from "../../Modal";
+import Modal from "@/app/Modal";
+import SearchBar from "@/app/SearchBar";
 
 async function fetchData(query) {
   var url = "http://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party";
@@ -62,6 +63,8 @@ function InfoPage({ params }) {
 
   return (
     <div>
+      <SearchBar />
+
       {data ? (
         <div>
           {isModalOpen && <Modal onToggleModal={handleModalToggle} address={data.data.address.value} />}
