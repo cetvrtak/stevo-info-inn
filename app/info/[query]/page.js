@@ -4,7 +4,7 @@ import Modal from "@/app/Modal";
 import SearchBar from "@/app/SearchBar";
 
 async function fetchData(query) {
-  var url = "http://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party";
+  var url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party";
   var token = "9952f7bb5df38a1abdf2cd69d3f08ee528d0dab4";
 
   var options = {
