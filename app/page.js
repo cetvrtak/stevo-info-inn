@@ -1,15 +1,16 @@
 'use client'
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 const HomePage = () => {
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState('7707083893')
+  const router = useRouter()
 
   async function handleSubmit(e) {
     e.preventDefault()
 
     var url = "http://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party";
     var token = "237a7776db5718ec773b4319a288282fc9723df2";
-    // var query = "7707083893";
 
     var options = {
       method: "POST",
@@ -25,7 +26,8 @@ const HomePage = () => {
     try {
       const response = await fetch(url, options);
       const result = await response.text();
-      console.log(result);
+
+      router.push(`/info/${query}`)
     } catch (error) {
       console.log("error", error);
     }
