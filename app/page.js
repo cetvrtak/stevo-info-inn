@@ -26,8 +26,10 @@ const HomePage = () => {
     try {
       const response = await fetch(url, options);
       const result = await response.text();
+      const suggestions = JSON.parse(result).suggestions;
+      const main = suggestions.filter(el => el.data.branch_type === 'MAIN')[0]
 
-      router.push(`/info/${query}`)
+      router.push(`/info/${query}?value=${main.value}&name=${main.data.management.name}&post=${main.data.management.post}&address=${main.data.address.value}`, `/info/${query}`)
     } catch (error) {
       console.log("error", error);
     }
